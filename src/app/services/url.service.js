@@ -8,4 +8,5 @@ angular
       this.providerId = _domainPort + '/id/';
       this.providerInfo = _domainPort + '/info/';
       this.userLogin = _domainPort + '/login/';
+      this.userTokenRetrieve = _domainPort + '/userToken/';
     });

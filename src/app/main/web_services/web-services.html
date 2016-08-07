@@ -1,14 +1,15 @@
 <div>
   <div>
     <button ng-click="wsc.buttons.providerIdToken()">Request Provider Id Token</button>
-    {{wsc.display.providerIdToken}}
+    {{wsc.displays.providerIdToken}}
   </div>
   <div>
     <button ng-click="wsc.buttons.providerInfo()">Request Provider Info</button>
-    {{wsc.display.providerInfo}}
+    {{wsc.displays.providerInfo}}
   </div>
   <div>
-<!--    <button ng-click="wsc.buttons.providerInfo()">Provider Info Request</button>
-    {{wsc.display.providerInfo}} -->
+    <input ng-model="wsc.inputs.userTokenRetrieve"></input>
+    <button ng-click="wsc.buttons.userTokenRetrieve()">Retrieve User Token</button>
+    {{wsc.displays.userTokenRetrieve}}
   </div>
 </div>

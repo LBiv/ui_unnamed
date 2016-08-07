@@ -18,12 +18,18 @@
 
     wsc.buttons = {
       providerIdToken: providerIdButton,
-      providerInfo: providerInfoButton
+      providerInfo: providerInfoButton,
+      userTokenRetrieve: userTokenRetrieveButton
     };
 
-    wsc.display = {
+    wsc.displays = {
       providerIdToken: '',
-      providerInfo: ''
+      providerInfo: '',
+      userTokenRetrieve: ''
+    };
+
+    wsc.inputs = {
+      userTokenRetrieve: ''
     };
 
 
@@ -32,7 +38,7 @@
         .get(UrlService.providerId)
         .then(function(response) {
           console.log(response);
-          wsc.display.providerIdToken = response.data;
+          wsc.displays.providerIdToken = response.data;
         });
     } 
 
@@ -41,9 +47,25 @@
         .get(UrlService.providerInfo)
         .then(function(response) {
           console.log(response);
-          wsc.display.providerInfo = response.data;
+          wsc.displays.providerInfo = response.data;
         });
     } 
+
+    function userTokenRetrieveButton () {
+      $http
+        .post(
+          UrlService.userTokenRetrieve,
+          {"UserIdentifier": wsc.inputs.userTokenRetrieve})
+        .then(
+          function(response) {
+            console.log(response);
+            wsc.displays.userTokenRetrieve = response.data.UserToken;
+          },
+          function(error) {
+            console.log(error);
+          });
+
+    }
   }
 })();
 
