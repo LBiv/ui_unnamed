@@ -1,1 +1,2 @@
-angular.module('webServices', []);
+angular.module('webServices',
+  ['unnamedServices']);

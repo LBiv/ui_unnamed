@@ -1,4 +1,33 @@
 <div>
+  <h2>Data Storage and Retrieval</h2>
+  <h3>Store Data</h3>
+  <div>
+    <div>
+      <input ng-model="wsc.inputs.storeData.data"></input>
+    <div>
+      <input ng-model="wsc.inputs.storeData.keyslot"></input>
+    </div>
+    <div>
+      <button ng-click="wsc.buttons.storeData.store()">Store</button>
+      {{wsc.displays.storeData.dataId}}
+    <div>
+      {{wsc.displays.storeData.keyslotId}}
+    </div>
+    </div>
+  </div>
+  <h3>Load Data</h3>
+  <div>
+    <div>
+      <input ng-model="wsc.inputs.loadData.dataId"></input>
+      <input ng-model="wsc.inputs.loadData.keyslotIds"></input>
+    </div>
+    <div>
+      <button ng-click="wsc.buttons.loadData.load()">Load</button>
+      {{wsc.displays.loadData.keyslot}}
+    <div>
+      {{wsc.displays.loadData.data}}
+    </div>
+  </div>
   <div>
     <button ng-click="wsc.buttons.providerIdToken()">Request Provider Id Token</button>
     {{wsc.displays.providerIdToken}}

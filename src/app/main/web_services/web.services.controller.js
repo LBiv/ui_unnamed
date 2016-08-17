@@ -7,31 +7,81 @@
 
   WebServicesController.$inject = [
     '$http',
-    'UrlService'];
-  
+    'UrlService',
+    'DataStorageService'];
+
 
   function WebServicesController(
     $http,
-    UrlService)
+    UrlService,
+    DataStorageService)
   {
     var wsc = this;
 
     wsc.buttons = {
       providerIdToken: providerIdButton,
       providerInfo: providerInfoButton,
-      userTokenRetrieve: userTokenRetrieveButton
+      userTokenRetrieve: userTokenRetrieveButton,
+      storeData: {
+        store: storeDataStoreButton
+      },
+      loadData: {
+        load: loadDataLoadButton
+      }
     };
 
     wsc.displays = {
       providerIdToken: '',
       providerInfo: '',
-      userTokenRetrieve: ''
+      userTokenRetrieve: '',
+      storeData: {
+        dataId: '',
+        keyslotId: ''
+      },
+      loadData: {
+        data: '',
+        keyslot: ''
+      }
     };
 
     wsc.inputs = {
-      userTokenRetrieve: ''
+      userTokenRetrieve: '',
+      storeData: {
+        data: '',
+        keyslot: ''
+      },
+      loadData: {
+        dataId: '',
+        keyslotIds: ''
+      }
     };
 
+    activate();  
+
+    function storeDataStoreButton () {
+      var keyslots = [];
+      keyslots[0] = wsc.inputs.storeData.keyslot;
+      DataStorageService.storeData(
+        wsc.inputs.storeData.data,
+        keyslots)
+        .then(function (response) {
+          console.log("response", response);
+          wsc.displays.storeData.dataId = response.data.dataId;
+          wsc.displays.storeData.keyslotId = response.data.keyslotIds[0];
+        });
+    }
+
+    function loadDataLoadButton () {
+      keyslotIds = [];
+      keyslotIds[0] = wsc.inputs.loadData.keyslotIds;
+      DataStorageService.loadData(
+        wsc.inputs.loadData.dataId,
+        keyslotIds)
+        .then(function (response) {
+          wsc.displays.loadData.data = response.data.data;
+          wsc.displays.loadData.keyslot = response.data.keyslots[0];
+        });
+    }
 
     function providerIdButton () {
       $http
@@ -65,6 +115,10 @@
             console.log(error);
           });
 
+    }
+
+    function activate() {
+      console.log("controller", wsc);
     }
   }
 })();
